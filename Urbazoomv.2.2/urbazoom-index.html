@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urbazoom - Gestão Urbana Inteligente</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo-section">
+            <div class="logot">
+              <img src="/imgs/logoUrbazoom.jpg" alt="logot" />
+            </div>
+            <div class="logo">
+              Urbazoom
+              <div class="slogan">SUA VOZ, NOSSA CIDADE</div>
+            </div>
+          </div>
+          <div class="nav-buttons" id="navButtons">
+            <button class="btn" onclick="showLogin()">Login</button>
+            <button class="btn btn-secondary" onclick="showRegister()">
+              Cadastrar
+            </button>
+          </div>
+          <div class="user-info hidden" id="userInfo">
+            Bem-vindo, <span id="userName"></span>
+            <button
+              class="btn btn-small"
+              onclick="logout()"
+              style="margin-left: 10px"
+            >
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="main-grid" id="mainPage">
+          <div class="frame carousel-frame">
+            <h3>Galeria da Cidade</h3>
+            <div class="carousel" id="carousel">
+              <img
+                src="/Locations/CentroMaua.jpg"
+                alt="CentroMaua"
+                class="active"
+              />
+              <img src="/Locations/FatecMaua.JPG" alt="FatecMaua" />
+              <img src="/Locations/IgrejaMatriz.jpg" alt="IgrejaMatriz" />
+              <img src="/Locations/Shopping Maua.jpg" alt="Shopping Maua" />
+            </div>
+          </div>
+
+          <div class="frame reclamacoes-frame">
+            <h3>Reclamações Recentes</h3>
+            <div class="reclamacoes-list" id="reclamacoesList">
+              <!-- Reclamações serão inseridas aqui -->
+            </div>
+          </div>
+
+          <div class="frame stats-frame">
+            <h3>Estatísticas da Cidade</h3>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number" id="totalReclamacoes">0</div>
+                <div>Total de Reclamações</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="urgentesCount">0</div>
+                <div>Urgentes</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="usuariosCount">0</div>
+                <div>Usuários Cadastrados</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="crud-panel hidden" id="crudPanel">
+          <h2>Gerenciar Reclamações</h2>
+          <button class="btn" onclick="showAddReclamacao()">
+            Nova Reclamação
+          </button>
+          <div id="reclamacoesCrud">
+            <!-- Lista de reclamações para CRUD -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3>Urbazoom</h3>
+            <p class="slogan-footer">SUA VOZ, NOSSA CIDADE</p>
+            <p>Conectando cidadãos e gestores para uma cidade melhor</p>
+          </div>
+
+          <div class="team-section">
+            <h4>Nossa Equipe de Desenvolvimento</h4>
+            <div class="team-grid">
+              <div class="team-member">
+                <div class="member-photo">
+                  <img
+                    src="/imgs/AgathaCorreia.jpg"
+                    alt="Agatha Vitoria Correia da Silva"
+                  />
+                </div>
+                <span class="member-name">Agatha Vitoria Correia da Silva</span>
+              </div>
+
+              <div class="team-member">
+                <div class="member-photo">
+                  <img
+                    src="/imgs/AnaEloisa.jpg"
+                    alt="Ana Eloisa Batista Rodrigues"
+                  />
+                </div>
+                <span class="member-name">Ana Eloisa Batista Rodrigues</span>
+              </div>
+
+              <div class="team-member">
+                <div class="member-photo">
+                  <img
+                    src="/imgs/GeovanneBranco.jpg"
+                    alt="Geovanne Branco de Souza"
+                  />
+                </div>
+                <span class="member-name">Geovanne Branco de Souza</span>
+              </div>
+
+              <div class="team-member">
+                <div class="member-photo">
+                  <img
+                    src="/imgs/GustavoEspinosa2.jpg"
+                    alt="Gustavo Sousa Santana Espinosa"
+                  />
+                </div>
+                <span class="member-name">Gustavo Sousa Santana Espinosa</span>
+              </div>
+              <div class="team-member">
+                <div class="member-photo">
+                  <img
+                    src="/imgs/RafaelaTavares.jpg"
+                    alt="Rafaela Tavares da Silva"
+                  />
+                </div>
+                <span class="member-name">Rafaela Tavares da Silva</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Urbazoom. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('loginModal')">&times;</span>
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Senha:</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="btn">Entrar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="registerModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('registerModal')">&times;</span>
+        <h2>Cadastro</h2>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="registerName">Nome:</label>
+            <input type="text" id="registerName" required />
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email:</label>
+            <input type="email" id="registerEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Senha:</label>
+            <input type="password" id="registerPassword" required />
+          </div>
+          <div class="form-group">
+            <label for="registerCity">Cidade:</label>
+            <input type="text" id="registerCity" required />
+          </div>
+          <button type="submit" class="btn">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de Reclamação -->
+    <div id="reclamacaoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('reclamacaoModal')"
+          >&times;</span
+        >
+        <h2 id="reclamacaoModalTitle">Nova Reclamação</h2>
+        <form onsubmit="handleReclamacao(event)">
+          <div class="form-group">
+            <label for="reclamacaoTitulo">Título:</label>
+            <input type="text" id="reclamacaoTitulo" required />
+          </div>
+          <div class="form-group">
+            <label for="reclamacaoDescricao">Descrição:</label>
+            <textarea id="reclamacaoDescricao" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="reclamacaoLocal">Local:</label>
+            <input type="text" id="reclamacaoLocal" required />
+          </div>
+          <div class="form-group">
+            <label for="reclamacaoPrioridade">Prioridade:</label>
+            <select id="reclamacaoPrioridade" required>
+              <option value="">Selecione...</option>
+              <option value="urgente">🔴 Urgente</option>
+              <option value="preocupante">🟡 Preocupante</option>
+              <option value="atencao">🟠 Requer Atenção</option>
+            </select>
+          </div>
+          <input type="hidden" id="editReclamacaoId" />
+          <button type="submit" class="btn">Salvar</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
